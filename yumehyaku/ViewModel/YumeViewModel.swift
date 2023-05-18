@@ -28,10 +28,12 @@ class WeightViewModel {
     }
     
     // viewで入力した値をWeight型の変数にまとめて、WeightModelでrealmに保存する
-    func addData(title: String, imageData: Data?, category: String, limit: String, memo: String, createDate: String){
+    func addData(title: String, image: UIImage?, category: String, limit: String, memo: String, createDate: String){
         let yume = Yume()
         yume.title = title
-        yume.imageData = imageData
+        if image != nil {
+            yume.imageData = image!.pngData()
+        }
         yume.category = category
         yume.limit = limit
         yume.memo = memo

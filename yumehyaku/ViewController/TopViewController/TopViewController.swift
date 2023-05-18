@@ -13,6 +13,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var navigationBar: UINavigationBar!
+    var allYumeList: [Yume] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -20,11 +21,16 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return allYumeList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "YumelistCell", for: indexPath) as? YumelistCell else { return UITableViewCell()}
+        cell.titleLabel.text = allYumeList[indexPath.row].title
+        if allYumeList[indexPath.row].imageData != nil {
+            cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
+        }
+        cell.limitLabel.text = allYumeList[indexPath.row].limit
         return cell
     }
     
