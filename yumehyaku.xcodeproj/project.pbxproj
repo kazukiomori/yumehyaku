@@ -16,6 +16,7 @@
 		3BAE241F2A127B8B004BB955 /* yumehyakuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE241E2A127B8B004BB955 /* yumehyakuTests.swift */; };
 		3BAE24292A127B8B004BB955 /* yumehyakuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE24282A127B8B004BB955 /* yumehyakuUITests.swift */; };
 		3BAE242B2A127B8B004BB955 /* yumehyakuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE242A2A127B8B004BB955 /* yumehyakuUITestsLaunchTests.swift */; };
+		3BBAE5A62A1529960081B0DA /* YumelistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBAE5A52A1529960081B0DA /* YumelistCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		3BAE24242A127B8B004BB955 /* yumehyakuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yumehyakuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAE24282A127B8B004BB955 /* yumehyakuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yumehyakuUITests.swift; sourceTree = "<group>"; };
 		3BAE242A2A127B8B004BB955 /* yumehyakuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yumehyakuUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3BBAE5A52A1529960081B0DA /* YumelistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumelistCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		3BAE24372A127C59004BB955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3BBAE5A42A15296D0081B0DA /* TableViewCell */,
 				3BAE243A2A127CDF004BB955 /* TopViewController */,
 			);
 			path = ViewController;
@@ -157,6 +160,14 @@
 				3BAE240B2A127B88004BB955 /* TopViewController.swift */,
 			);
 			path = TopViewController;
+			sourceTree = "<group>";
+		};
+		3BBAE5A42A15296D0081B0DA /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3BBAE5A52A1529960081B0DA /* YumelistCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BAE240C2A127B88004BB955 /* TopViewController.swift in Sources */,
+				3BBAE5A62A1529960081B0DA /* YumelistCell.swift in Sources */,
 				3BAE24082A127B88004BB955 /* AppDelegate.swift in Sources */,
 				3BAE240A2A127B88004BB955 /* SceneDelegate.swift in Sources */,
 			);
