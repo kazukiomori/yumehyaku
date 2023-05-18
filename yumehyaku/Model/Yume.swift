@@ -20,14 +20,14 @@ class Yume: Object {
 extension Yume {
     
     // realmにデータを保存
-    func addData(yume: Yume) {
+    static func addData(yume: Yume) {
         let realm = try! Realm()
         try! realm.write{
             realm.add(yume)
         }
     }
     // realmからデータを取得
-    func getAllWeightData() -> Results<Yume> {
+    static func getAllWeightData() -> Results<Yume> {
 //        let config = RealmSwift.Realm.Configuration(schemaVersion: 1)
 //        Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()

@@ -17,7 +17,8 @@
 		3BAE24292A127B8B004BB955 /* yumehyakuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE24282A127B8B004BB955 /* yumehyakuUITests.swift */; };
 		3BAE242B2A127B8B004BB955 /* yumehyakuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE242A2A127B8B004BB955 /* yumehyakuUITestsLaunchTests.swift */; };
 		3BBAE5A62A1529960081B0DA /* YumelistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBAE5A52A1529960081B0DA /* YumelistCell.swift */; };
-		3BC7D7832A166A4A00428D14 /* YumeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D7822A166A4A00428D14 /* YumeModel.swift */; };
+		3BC7D7832A166A4A00428D14 /* Yume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D7822A166A4A00428D14 /* Yume.swift */; };
+		3BC7D7852A166E3600428D14 /* YumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D7842A166E3600428D14 /* YumeViewModel.swift */; };
 		7E0F4F89134476D37BE597AB /* Pods_yumehyakuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A399800DC5BFADAEC841EBF /* Pods_yumehyakuTests.framework */; };
 		8848F5BC784D11F014606B9E /* Pods_yumehyaku_yumehyakuUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00252A15D7C797FFD3CC5E2C /* Pods_yumehyaku_yumehyakuUITests.framework */; };
 		B7B7DFCB146180EC25545371 /* Pods_yumehyaku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1065D12DA281EE6B252EFA5B /* Pods_yumehyaku.framework */; };
@@ -59,7 +60,8 @@
 		3BAE24282A127B8B004BB955 /* yumehyakuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yumehyakuUITests.swift; sourceTree = "<group>"; };
 		3BAE242A2A127B8B004BB955 /* yumehyakuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yumehyakuUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3BBAE5A52A1529960081B0DA /* YumelistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumelistCell.swift; sourceTree = "<group>"; };
-		3BC7D7822A166A4A00428D14 /* YumeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeModel.swift; sourceTree = "<group>"; };
+		3BC7D7822A166A4A00428D14 /* Yume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yume.swift; sourceTree = "<group>"; };
+		3BC7D7842A166E3600428D14 /* YumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeViewModel.swift; sourceTree = "<group>"; };
 		40DA0945EDBAF6299A9585F8 /* Pods-yumehyaku-yumehyakuUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yumehyaku-yumehyakuUITests.release.xcconfig"; path = "Target Support Files/Pods-yumehyaku-yumehyakuUITests/Pods-yumehyaku-yumehyakuUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4A399800DC5BFADAEC841EBF /* Pods_yumehyakuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yumehyakuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F15068C9E9931CE4C724650 /* Pods-yumehyakuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yumehyakuTests.release.xcconfig"; path = "Target Support Files/Pods-yumehyakuTests/Pods-yumehyakuTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		3BAE24382A127C62004BB955 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				3BC7D7842A166E3600428D14 /* YumeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -168,7 +171,7 @@
 		3BAE24392A127C6C004BB955 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3BC7D7822A166A4A00428D14 /* YumeModel.swift */,
+				3BC7D7822A166A4A00428D14 /* Yume.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -452,8 +455,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC7D7852A166E3600428D14 /* YumeViewModel.swift in Sources */,
 				3BAE240C2A127B88004BB955 /* TopViewController.swift in Sources */,
-				3BC7D7832A166A4A00428D14 /* YumeModel.swift in Sources */,
+				3BC7D7832A166A4A00428D14 /* Yume.swift in Sources */,
 				3BBAE5A62A1529960081B0DA /* YumelistCell.swift in Sources */,
 				3BAE24082A127B88004BB955 /* AppDelegate.swift in Sources */,
 				3BAE240A2A127B88004BB955 /* SceneDelegate.swift in Sources */,
