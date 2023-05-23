@@ -14,10 +14,31 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var navigationBar: UINavigationBar!
     var allYumeList: [Yume] = []
+    var addBarButtonItem: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        navigationItemSet()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItemSet()
+    }
+    
+    func navigationItemSet() {
+        navigationItem.title = "目標"
+        addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        addBarButtonItem.tintColor = .systemPink
+        self.navigationItem.rightBarButtonItem = addBarButtonItem
+    }
+    
+    @objc func addButtonTapped() {
+        let storyBoard = UIStoryboard(name: "InputGoalViewController", bundle: nil)
+        guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "InputGoalViewController") as? InputGoalViewController else { return }
+        self.navigationController?.show(nextViewController, sender: nil)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
