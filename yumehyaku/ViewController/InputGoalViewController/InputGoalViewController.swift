@@ -9,6 +9,20 @@ import UIKit
 
 class InputGoalViewController: UIViewController {
     
+    @IBOutlet weak var imageLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageDiscription: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryButton: UIButton!
+    @IBOutlet weak var limitLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var priorityLabel: UILabel!
+    @IBOutlet weak var priorityButton: UIButton!
+    @IBOutlet weak var memoLabel: UILabel!
+    @IBOutlet weak var memoTextView: UITextView!
+    @IBOutlet weak var saveButton: UIButton!
     let viewModel = WeightViewModel()
     var saveBarButtonItem: UIBarButtonItem!
     override func viewDidLoad() {
@@ -22,11 +36,18 @@ class InputGoalViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = saveBarButtonItem
     }
     
-   
-    @objc func saveButtonTapped() {
-        viewModel.addData(title: <#T##String#>, image: <#T##UIImage?#>, category: <#T##String#>, limit: <#T##String#>, memo: <#T##String#>, createDate: <#T##String#>)
+    @IBAction func categoryButtonTapped(_ sender: Any) {
         
-        messageAlert.shared.showSuccessMessage(title: NSLocalizedString("success", comment: ""), body: NSLocalizedString("successfullySavedMenu", comment: ""))
-        self.navigationController?.popViewController(animated: false)
     }
+    
+    @IBAction func priorityButtonTapped(_ sender: Any) {
+        
+    }
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        //        viewModel.addData(title: <#T##String#>, image: <#T##UIImage?#>, category: <#T##String#>, limit: <#T##String#>, memo: <#T##String#>, createDate: <#T##String#>)
+                
+                messageAlert.shared.showSuccessMessage(title: NSLocalizedString("success", comment: ""), body: NSLocalizedString("successfullySavedMenu", comment: ""))
+                self.navigationController?.popViewController(animated: false)
+            }
+
 }
