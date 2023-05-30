@@ -27,6 +27,8 @@ class InputGoalViewController: UIViewController {
     var saveBarButtonItem: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItemSet()
+        setView()
     }
     
     func navigationItemSet() {
@@ -34,6 +36,11 @@ class InputGoalViewController: UIViewController {
         saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(saveButtonTapped))
         saveBarButtonItem.tintColor = .systemPink
         self.navigationItem.rightBarButtonItem = saveBarButtonItem
+    }
+    
+    func setView() {
+        imageDiscription.numberOfLines = 0
+        imageDiscription.text = "イラストを設定して、リストをより具体的にしましょう。"
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {

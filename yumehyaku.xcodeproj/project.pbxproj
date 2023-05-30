@@ -178,6 +178,7 @@
 		3BAE24372A127C59004BB955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3BEE41ED2A26636B00FB3423 /* CategoryViewController */,
 				3BBAE5A42A15296D0081B0DA /* TableViewCell */,
 				3B70D2922A17D13500D333BA /* InputGoalViewController */,
 				3BAE243A2A127CDF004BB955 /* TopViewController */,
@@ -216,6 +217,13 @@
 				3BBAE5A52A1529960081B0DA /* YumelistCell.swift */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		3BEE41ED2A26636B00FB3423 /* CategoryViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CategoryViewController;
 			sourceTree = "<group>";
 		};
 		499C6DF8BD62EE31DFDCBFA2 /* Pods */ = {
