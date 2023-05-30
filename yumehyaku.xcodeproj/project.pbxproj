@@ -23,6 +23,8 @@
 		3BBAE5A62A1529960081B0DA /* YumelistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBAE5A52A1529960081B0DA /* YumelistCell.swift */; };
 		3BC7D7832A166A4A00428D14 /* Yume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D7822A166A4A00428D14 /* Yume.swift */; };
 		3BC7D7852A166E3600428D14 /* YumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D7842A166E3600428D14 /* YumeViewModel.swift */; };
+		3BEE41EF2A2663C200FB3423 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE41EE2A2663C200FB3423 /* CategoryViewController.swift */; };
+		3BEE41F12A2663E900FB3423 /* CategoryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEE41F02A2663E900FB3423 /* CategoryViewController.storyboard */; };
 		85073AF998795FA98ED931E3 /* Pods_yumehyaku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA966A66A2B07400D5A20CDC /* Pods_yumehyaku.framework */; };
 		FA47D3B42E2BFB0045082282 /* Pods_yumehyaku_yumehyakuUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 355B0CD6770500F02F3D62EC /* Pods_yumehyaku_yumehyakuUITests.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +68,8 @@
 		3BBAE5A52A1529960081B0DA /* YumelistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumelistCell.swift; sourceTree = "<group>"; };
 		3BC7D7822A166A4A00428D14 /* Yume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yume.swift; sourceTree = "<group>"; };
 		3BC7D7842A166E3600428D14 /* YumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeViewModel.swift; sourceTree = "<group>"; };
+		3BEE41EE2A2663C200FB3423 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		3BEE41F02A2663E900FB3423 /* CategoryViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryViewController.storyboard; sourceTree = "<group>"; };
 		65CCE841125AFB93CDE63CF0 /* Pods_yumehyakuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yumehyakuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFB77F420ED5B76F127D6FE /* Pods-yumehyaku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yumehyaku.release.xcconfig"; path = "Target Support Files/Pods-yumehyaku/Pods-yumehyaku.release.xcconfig"; sourceTree = "<group>"; };
 		AB09910A3E8B356ABD4DAE25 /* Pods-yumehyaku-yumehyakuUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yumehyaku-yumehyakuUITests.release.xcconfig"; path = "Target Support Files/Pods-yumehyaku-yumehyakuUITests/Pods-yumehyaku-yumehyakuUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 		3BEE41ED2A26636B00FB3423 /* CategoryViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3BEE41EE2A2663C200FB3423 /* CategoryViewController.swift */,
+				3BEE41F02A2663E900FB3423 /* CategoryViewController.storyboard */,
 			);
 			path = CategoryViewController;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				3BAE24142A127B8A004BB955 /* LaunchScreen.storyboard in Resources */,
 				3BAE24112A127B8A004BB955 /* Assets.xcassets in Resources */,
 				3BAE240F2A127B88004BB955 /* Main.storyboard in Resources */,
+				3BEE41F12A2663E900FB3423 /* CategoryViewController.storyboard in Resources */,
 				3B70D2962A17D1C200D333BA /* InputGoalViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +503,7 @@
 				3BBAE5A62A1529960081B0DA /* YumelistCell.swift in Sources */,
 				3B70D2942A17D17800D333BA /* InputGoalViewController.swift in Sources */,
 				3BAE24082A127B88004BB955 /* AppDelegate.swift in Sources */,
+				3BEE41EF2A2663C200FB3423 /* CategoryViewController.swift in Sources */,
 				3BAE240A2A127B88004BB955 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
