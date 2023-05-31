@@ -41,10 +41,13 @@ class InputGoalViewController: UIViewController {
     func setView() {
         imageDiscription.numberOfLines = 0
         imageDiscription.text = "イラストを設定して、リストをより具体的にしましょう。"
+        categoryButton.setTitleColor(.black, for: .normal)
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
-        
+        let storyBoard = UIStoryboard(name: "CategoryViewController", bundle: nil)
+        guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CategoryViewController") as? CategoryViewController else { return }
+        self.navigationController?.show(nextViewController, sender: nil)
     }
     
     @IBAction func priorityButtonTapped(_ sender: Any) {
