@@ -42,6 +42,7 @@ class InputGoalViewController: UIViewController {
         imageDiscription.numberOfLines = 0
         imageDiscription.text = "イラストを設定して、リストをより具体的にしましょう。"
         categoryButton.setTitleColor(.black, for: .normal)
+        priorityButton.setTitleColor(.black, for: .normal)
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -51,8 +52,40 @@ class InputGoalViewController: UIViewController {
     }
     
     @IBAction func priorityButtonTapped(_ sender: Any) {
+        let actionSheet = UIAlertController(title: "優先度を選択してください", message: "", preferredStyle: UIAlertController.Style.actionSheet)
         
+        // 表示させたいタイトル1ボタンが押された時の処理をクロージャ実装する
+        let action1 = UIAlertAction(title: "高", style: UIAlertAction.Style.default, handler: {
+            (action: UIAlertAction!) in
+            self.priorityButton.setTitle("高", for: .normal)
+        })
+        // 表示させたいタイトル2ボタンが押された時の処理をクロージャ実装する
+        let action2 = UIAlertAction(title: "中", style: UIAlertAction.Style.default, handler: {
+            (action: UIAlertAction!) in
+            self.priorityButton.setTitle("中", for: .normal)
+        })
+        let action3 = UIAlertAction(title: "低", style: UIAlertAction.Style.default, handler: {
+            (action: UIAlertAction!) in
+            self.priorityButton.setTitle("低", for: .normal)
+        })
+        
+        // 閉じるボタンが押された時の処理をクロージャ実装する
+        //UIAlertActionのスタイルがCancelなので赤く表示される
+        let close = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.destructive, handler: {
+            (action: UIAlertAction!) in
+            //実際の処理
+        })
+        
+        //UIAlertControllerにタイトル1ボタンとタイトル2ボタンと閉じるボタンをActionを追加
+        actionSheet.addAction(action1)
+        actionSheet.addAction(action2)
+        actionSheet.addAction(action3)
+        actionSheet.addAction(close)
+        
+        //実際にAlertを表示する
+        self.present(actionSheet, animated: true, completion: nil)
     }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         //        viewModel.addData(title: <#T##String#>, image: <#T##UIImage?#>, category: <#T##String#>, limit: <#T##String#>, memo: <#T##String#>, createDate: <#T##String#>)
                 
