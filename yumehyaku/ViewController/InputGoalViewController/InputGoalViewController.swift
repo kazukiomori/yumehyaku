@@ -25,6 +25,8 @@ class InputGoalViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     let viewModel = WeightViewModel()
     var saveBarButtonItem: UIBarButtonItem!
+    var calendar = Calendar.current
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItemSet()
@@ -43,6 +45,7 @@ class InputGoalViewController: UIViewController {
         imageDiscription.text = "イラストを設定して、リストをより具体的にしましょう。"
         categoryButton.setTitleColor(.black, for: .normal)
         priorityButton.setTitleColor(.black, for: .normal)
+        datePicker.timeZone = TimeZone(identifier: "Asia/Tokyo")!
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -84,6 +87,18 @@ class InputGoalViewController: UIViewController {
         
         //実際にAlertを表示する
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @IBAction func changeDatePicker(_ sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy年MM月dd日"
+        sender.timeZone = TimeZone(identifier: "JST")!
+        calendar.timeZone = TimeZone(identifier: "JST")!
+        let currentDate = calendar.startOfDay(for: Date())
+        let targetDay = sender.date
+        let dateComponents = calendar.dateComponents([.day], from: currentDate, to: targetDay)
+        guard let limitDay = dateComponents.day else {return}
+        limitLabel.text = "\(formatter.string(from: sender.date))  \(limitDay)日後"
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {

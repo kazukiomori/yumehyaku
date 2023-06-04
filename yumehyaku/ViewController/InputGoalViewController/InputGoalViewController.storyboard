@@ -112,6 +112,9 @@
                                                     <constraint firstAttribute="height" constant="200" id="Gp2-8I-uuy"/>
                                                 </constraints>
                                                 <locale key="locale" localeIdentifier="ja_JP"/>
+                                                <connections>
+                                                    <action selector="changeDatePicker:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Ugj-aJ-1z5"/>
+                                                </connections>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023年5月25日(100日後)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DC6-Uj-RgU">
                                                 <rect key="frame" x="0.0" y="680" width="393" height="40"/>
