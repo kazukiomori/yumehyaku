@@ -92,9 +92,11 @@ class InputGoalViewController: UIViewController {
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy年MM月dd日"
-        sender.timeZone = TimeZone(identifier: "JST")!
-        calendar.timeZone = TimeZone(identifier: "JST")!
-        let currentDate = calendar.startOfDay(for: Date())
+        formatter.timeZone = TimeZone(abbreviation: "JST")
+        sender.timeZone = TimeZone(abbreviation: "JST")!
+        calendar.timeZone = TimeZone(abbreviation: "JST")!
+//        let currentDate = calendar.startOfDay(for: Date())
+        let currentDate = Date()
         let targetDay = sender.date
         let dateComponents = calendar.dateComponents([.day], from: currentDate, to: targetDay)
         guard let limitDay = dateComponents.day else {return}

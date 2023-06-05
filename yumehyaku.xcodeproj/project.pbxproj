@@ -25,6 +25,7 @@
 		3BC7D7852A166E3600428D14 /* YumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D7842A166E3600428D14 /* YumeViewModel.swift */; };
 		3BEE41EF2A2663C200FB3423 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE41EE2A2663C200FB3423 /* CategoryViewController.swift */; };
 		3BEE41F12A2663E900FB3423 /* CategoryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEE41F02A2663E900FB3423 /* CategoryViewController.storyboard */; };
+		3BEE41F32A2E2E4800FB3423 /* AppDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE41F22A2E2E4800FB3423 /* AppDate.swift */; };
 		85073AF998795FA98ED931E3 /* Pods_yumehyaku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA966A66A2B07400D5A20CDC /* Pods_yumehyaku.framework */; };
 		FA47D3B42E2BFB0045082282 /* Pods_yumehyaku_yumehyakuUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 355B0CD6770500F02F3D62EC /* Pods_yumehyaku_yumehyakuUITests.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		3BC7D7842A166E3600428D14 /* YumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeViewModel.swift; sourceTree = "<group>"; };
 		3BEE41EE2A2663C200FB3423 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		3BEE41F02A2663E900FB3423 /* CategoryViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryViewController.storyboard; sourceTree = "<group>"; };
+		3BEE41F22A2E2E4800FB3423 /* AppDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDate.swift; sourceTree = "<group>"; };
 		65CCE841125AFB93CDE63CF0 /* Pods_yumehyakuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yumehyakuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFB77F420ED5B76F127D6FE /* Pods-yumehyaku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yumehyaku.release.xcconfig"; path = "Target Support Files/Pods-yumehyaku/Pods-yumehyaku.release.xcconfig"; sourceTree = "<group>"; };
 		AB09910A3E8B356ABD4DAE25 /* Pods-yumehyaku-yumehyakuUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yumehyaku-yumehyakuUITests.release.xcconfig"; path = "Target Support Files/Pods-yumehyaku-yumehyakuUITests/Pods-yumehyaku-yumehyakuUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				3B70D2982A1D074200D333BA /* messageAlert.swift */,
+				3BEE41F22A2E2E4800FB3423 /* AppDate.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BC7D7852A166E3600428D14 /* YumeViewModel.swift in Sources */,
+				3BEE41F32A2E2E4800FB3423 /* AppDate.swift in Sources */,
 				3BAE240C2A127B88004BB955 /* TopViewController.swift in Sources */,
 				3B70D2992A1D074200D333BA /* messageAlert.swift in Sources */,
 				3BC7D7832A166A4A00428D14 /* Yume.swift in Sources */,
