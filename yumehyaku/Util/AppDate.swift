@@ -9,6 +9,7 @@ import UIKit
 import SwiftDate
 
 class AppDate: NSObject {
+    let timeZone = TimeZone(identifier: "Asia/Tokyo")!
     
     func lastGetDate(date: Date) -> Date {
         return (date - (24.hours))
@@ -32,16 +33,18 @@ class AppDate: NSObject {
     
     func dateStrOnlyDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.calendar = Calendar(identifier: .gregorian)
-        dateFormatter.dateFormat = "yyyy/MM/dd"
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = timeZone
         return dateFormatter.string(from: date)
     }
     
     func strDate(date: String) -> Date {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
-        dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-        if let result = dateFormatStr().date(from: date) {
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = timeZone
+        if let result = dateFormatter.date(from: date) {
             return result
         } else {
             return Date()
@@ -51,23 +54,24 @@ class AppDate: NSObject {
     func dateFormatStr() -> DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)
-        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        dateFormatter.timeZone = timeZone
         return dateFormatter
     }
     
     func pickerDateStrOnlyDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
         return dateFormatter.string(from: date)
     }
     
     func toStringWithCurrentLocale(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.timeZone = TimeZone.current
+        formatter.timeZone = timeZone
         formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "yyyy年MM月dd日"
         return formatter.string(from: date)
     }
     
@@ -95,3 +99,15 @@ class AppDate: NSObject {
     
 }
 
+extension Date {
+    func toString(dateFormat: String = "yyyy年MM月dd日",
+                  locale: String = "en_US_POSIX",
+                  timeZone: TimeZone? = TimeZone(identifier: "Asia/Tokyo")) -> String {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.locale = Locale(identifier: locale)
+        formatter.timeZone = timeZone
+        formatter.dateFormat = dateFormat
+        return formatter.string(from: self)
+    }
+}

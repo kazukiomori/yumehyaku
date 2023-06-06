@@ -26,6 +26,7 @@ class InputGoalViewController: UIViewController {
     let viewModel = WeightViewModel()
     var saveBarButtonItem: UIBarButtonItem!
     var calendar = Calendar.current
+    var targetDay = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,8 @@ class InputGoalViewController: UIViewController {
         categoryButton.setTitleColor(.black, for: .normal)
         priorityButton.setTitleColor(.black, for: .normal)
         datePicker.timeZone = TimeZone(identifier: "Asia/Tokyo")!
+        limitLabel.text = Date().toString()
+        datePicker.minimumDate = Date()
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -90,17 +93,11 @@ class InputGoalViewController: UIViewController {
     }
     
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy年MM月dd日"
-        formatter.timeZone = TimeZone(abbreviation: "JST")
-        sender.timeZone = TimeZone(abbreviation: "JST")!
-        calendar.timeZone = TimeZone(abbreviation: "JST")!
-//        let currentDate = calendar.startOfDay(for: Date())
-        let currentDate = Date()
-        let targetDay = sender.date
-        let dateComponents = calendar.dateComponents([.day], from: currentDate, to: targetDay)
+        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
+        let dateComponents = calendar.dateComponents([.day], from: calendar.startOfDay(for: Date()), to: calendar.startOfDay(for: sender.date))
         guard let limitDay = dateComponents.day else {return}
-        limitLabel.text = "\(formatter.string(from: sender.date))  \(limitDay)日後"
+        limitLabel.text = "\(sender.date.toString())  \(limitDay)日後"
+        targetDay = sender.date
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
