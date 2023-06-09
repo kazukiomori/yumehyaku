@@ -12,9 +12,10 @@ class Yume: Object {
     @objc dynamic var imageData: Data?
     @objc dynamic var title: String = ""
     @objc dynamic var category: String = ""
-    @objc dynamic var limit: String = ""
+    @objc dynamic var limitDay: Date = Date()
+    @objc dynamic var priolity: String = ""
     @objc dynamic var memo: String = ""
-    @objc dynamic var createDate: String = ""
+    @objc dynamic var createDate: Date = Date()
 }
 
 extension Yume {
@@ -27,9 +28,7 @@ extension Yume {
         }
     }
     // realmからデータを取得
-    static func getAllWeightData() -> Results<Yume> {
-//        let config = RealmSwift.Realm.Configuration(schemaVersion: 1)
-//        Realm.Configuration.defaultConfiguration = config
+    static func getAllYumeData() -> Results<Yume> {
         let realm = try! Realm()
         var results: Results<Yume>
         results = realm.objects(Yume.self)

@@ -142,7 +142,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="aC2-uv-aWM"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="優先度">
+                                                <buttonConfiguration key="configuration" style="plain" title="優先度を選択してください">
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>

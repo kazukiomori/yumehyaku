@@ -51,7 +51,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         if allYumeList[indexPath.row].imageData != nil {
             cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
         }
-        cell.limitLabel.text = allYumeList[indexPath.row].limit
+        cell.limitLabel.text = allYumeList[indexPath.row].limitDay
         return cell
     }
     

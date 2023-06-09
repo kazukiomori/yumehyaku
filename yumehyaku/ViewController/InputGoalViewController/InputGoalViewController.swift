@@ -101,10 +101,22 @@ class InputGoalViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        //        viewModel.addData(title: <#T##String#>, image: <#T##UIImage?#>, category: <#T##String#>, limit: <#T##String#>, memo: <#T##String#>, createDate: <#T##String#>)
-                
-                messageAlert.shared.showSuccessMessage(title: NSLocalizedString("success", comment: ""), body: NSLocalizedString("successfullySavedMenu", comment: ""))
-                self.navigationController?.popViewController(animated: false)
-            }
-
+        guard let yumeTitle = titleLabel.text, !yumeTitle.isEmpty else {
+            messageAlert.shared.showErrorMessage(title: "エラー", body: "タイトルを入力してください。")
+            return
+        }
+        
+        guard let memo = memoTextView.text, !memo.isEmpty else {
+            messageAlert.shared.showErrorMessage(title: "エラー", body: "メモを入力してください。")
+            return
+        }
+        
+        guard let category = categoryButton.currentTitle else { return }
+        
+        viewModel.addData(title: yumeTitle, image: imageView.image, category: category, limitDay: targetDay, memo: memo, createDate: Date())
+        
+        messageAlert.shared.showSuccessMessage(title: "成功", body: "登録に成功しました。")
+        self.navigationController?.popViewController(animated: false)
+    }
+    
 }
