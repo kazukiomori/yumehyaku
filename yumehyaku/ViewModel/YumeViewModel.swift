@@ -41,4 +41,8 @@ class YumeViewModel {
         yume.createDate = createDate
         Yume.addData(yume: yume)
     }
+    
+    func deleteData(title: String) {
+        Yume.delete(title: title)
+    }
 }

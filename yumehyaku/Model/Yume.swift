@@ -34,5 +34,13 @@ extension Yume {
         results = realm.objects(Yume.self)
         return results
     }
+    
+    static func delete(title: String) {
+        let realm = try! Realm()
+        let result = realm.objects(Yume.self).filter("title == %@",title)
+        try! realm.write {
+            realm.delete(result)
+        }
+    }
 }
 

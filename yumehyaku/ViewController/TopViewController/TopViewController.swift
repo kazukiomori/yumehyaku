@@ -35,6 +35,11 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableView.reloadData()
     }
     
+    func deleteDate(title: String) {
+        viewModel.deleteData(title: title)
+        tableView.reloadData()
+    }
+    
     func navigationItemSet() {
         navigationItem.title = "目標"
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
@@ -65,6 +70,34 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let action = UIContextualAction(style: .destructive,
+                                            title: "削除") { (action, view, completionHandler) in
+                self.showAlert(deleteIndexPath: indexPath)
+                completionHandler(true)
+            }
+            action.backgroundColor = .orange
+            let configuration = UISwipeActionsConfiguration(actions: [action])
+            return configuration
+        }
+        
+        func showAlert(deleteIndexPath indexPath: IndexPath) {
+            let dialog = UIAlertController(title: "注意",
+                                           message: "本当に削除しますか？",
+                                           preferredStyle: .alert)
+            dialog.addAction(UIAlertAction(title: "削除", style: .default, handler: { (_) in
+                self.deleteDate(title: self.allYumeList[indexPath.row].title)
+                self.allYumeList.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }))
+            dialog.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+            self.present(dialog, animated: true, completion: nil)
+        }
     
 }
 
