@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class WeightViewModel {
+class YumeViewModel {
 
     // WeightModelでrealmから取り出したデータをWeight型の配列にしてviewに渡す
     func fetchAllData() -> [Yume] {

@@ -23,7 +23,7 @@ class InputGoalViewController: UIViewController {
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var memoTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
-    let viewModel = WeightViewModel()
+    let viewModel = YumeViewModel()
     var saveBarButtonItem: UIBarButtonItem!
     var calendar = Calendar.current
     var targetDay = Date()
@@ -101,7 +101,7 @@ class InputGoalViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let yumeTitle = titleLabel.text, !yumeTitle.isEmpty else {
+        guard let yumeTitle = titleTextField.text, !yumeTitle.isEmpty else {
             messageAlert.shared.showErrorMessage(title: "エラー", body: "タイトルを入力してください。")
             return
         }

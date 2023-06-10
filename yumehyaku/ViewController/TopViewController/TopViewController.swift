@@ -15,6 +15,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var navigationBar: UINavigationBar!
     var allYumeList: [Yume] = []
     var addBarButtonItem: UIBarButtonItem!
+    let viewModel = YumeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,12 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItemSet()
+        fetchData()
+    }
+    
+    func fetchData() {
+        self.allYumeList = viewModel.fetchAllData()
+        tableView.reloadData()
     }
     
     func navigationItemSet() {
@@ -51,7 +58,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         if allYumeList[indexPath.row].imageData != nil {
             cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
         }
-        cell.limitLabel.text = allYumeList[indexPath.row].limitDay
+        cell.limitLabel.text = allYumeList[indexPath.row].limitDay.toString()
         return cell
     }
     
