@@ -22,6 +22,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.delegate = self
         self.tableView.dataSource = self
         navigationItemSet()
+        viewModel.deleteAllData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

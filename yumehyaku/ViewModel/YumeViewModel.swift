@@ -45,4 +45,8 @@ class YumeViewModel {
     func deleteData(title: String) {
         Yume.delete(title: title)
     }
+    
+    func deleteAllData() {
+        Yume.deleteAll()
+    }
 }

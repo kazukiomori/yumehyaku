@@ -42,5 +42,13 @@ extension Yume {
             realm.delete(result)
         }
     }
+    
+    static func deleteAll() {
+        let realm = try! Realm()
+        let result = realm.objects(Yume.self)
+        try! realm.write {
+            realm.delete(result)
+        }
+    }
 }
 
