@@ -16,6 +16,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var allYumeList: [Yume] = []
     var addBarButtonItem: UIBarButtonItem!
     let viewModel = YumeViewModel()
+    var doubleArray: [[String]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,28 +49,86 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.navigationItem.rightBarButtonItem = addBarButtonItem
     }
     
+    func makeDoubleArray(allYumeList: [Yume]) {
+        // カテゴリ
+        for _ in 1..<Array(Set(allYumeList)).count {
+            doubleArray.append([])
+        }
+        for yume in allYumeList {
+            
+        }
+    }
+    
     @objc func addButtonTapped() {
         let storyBoard = UIStoryboard(name: "InputGoalViewController", bundle: nil)
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "InputGoalViewController") as? InputGoalViewController else { return }
         self.navigationController?.show(nextViewController, sender: nil)
     }
-
+    @IBAction func onTappedSegment(_ sender: Any) {
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allYumeList.count
+        if segment.selectedSegmentIndex != 1 {
+            return allYumeList.count
+        } else {
+            for i in 1..<Array(Set(allYumeList)).count {
+                
+            }
+            return 3
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "YumelistCell", for: indexPath) as? YumelistCell else { return UITableViewCell()}
-        cell.titleLabel.text = allYumeList[indexPath.row].title
-        if allYumeList[indexPath.row].imageData != nil {
-            cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
+        let segmentIndex = segment.selectedSegmentIndex
+        switch segmentIndex {
+        case 0:
+            cell.titleLabel.text = allYumeList[indexPath.row].title
+            if allYumeList[indexPath.row].imageData != nil {
+                cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
+            }
+            cell.limitLabel.text = allYumeList[indexPath.row].limitDay.toString()
+        case 1:
+            _ = allYumeList.sorted(by: {
+                $0.category < $1.category
+            })
+            cell.titleLabel.text = allYumeList[indexPath.row].title
+            if allYumeList[indexPath.row].imageData != nil {
+                cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
+            }
+            cell.limitLabel.text = allYumeList[indexPath.row].limitDay.toString()
+        default:
+            _ = allYumeList.sorted(by: {
+                $0.limitDay.compare($1.limitDay) == .orderedAscending
+            })
+            cell.titleLabel.text = allYumeList[indexPath.row].title
+            if allYumeList[indexPath.row].imageData != nil {
+                cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
+            }
+            cell.limitLabel.text = allYumeList[indexPath.row].limitDay.toString()
         }
-        cell.limitLabel.text = allYumeList[indexPath.row].limitDay.toString()
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if allYumeList.count > 0,  segment.selectedSegmentIndex == 1{
+            return allYumeList[section].category
+        }
+        return ""
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if segment.selectedSegmentIndex != 1 {
+            return 1
+        } else {
+            return Array(Set(allYumeList)).count
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

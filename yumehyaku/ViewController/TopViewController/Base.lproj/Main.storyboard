@@ -115,6 +115,9 @@
                                     <segment title="カテゴリ"/>
                                     <segment title="期限"/>
                                 </segments>
+                                <connections>
+                                    <action selector="onTappedSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="Mb6-aU-cMC"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
