@@ -16,20 +16,22 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var allYumeList: [Yume] = []
     var addBarButtonItem: UIBarButtonItem!
     let viewModel = YumeViewModel()
-    var doubleArray: [[String]] = [[]]
+    var doubleArray: [[Yume]] = [[]]
+    var calendar = Calendar.current
+    var targetDay = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         navigationItemSet()
-        viewModel.deleteAllData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItemSet()
         fetchData()
+        makeDoubleArray(allYumeList: allYumeList)
     }
     
     func fetchData() {
@@ -50,12 +52,15 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func makeDoubleArray(allYumeList: [Yume]) {
-        // カテゴリ
-        for _ in 1..<Array(Set(allYumeList)).count {
-            doubleArray.append([])
-        }
-        for yume in allYumeList {
-            
+        for item in allYumeList {
+            // カテゴリが既存の多重配列内に存在するかを検索
+            if let index = doubleArray.firstIndex(where: { $0.first?.category == item.category }) {
+                // 既存のカテゴリに追加
+                doubleArray[index].append(item)
+            } else {
+                // 新しいカテゴリを作成して追加
+                doubleArray.append([item])
+            }
         }
     }
     
@@ -68,57 +73,65 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableView.reloadData()
     }
     
+    // cellの数を設定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segment.selectedSegmentIndex != 1 {
             return allYumeList.count
         } else {
-            for i in 1..<Array(Set(allYumeList)).count {
-                
-            }
-            return 3
+//            let category = getCategory(forSection: section)
+//            let categoryItems = allYumeList.filter { $0.category == category }
+            return doubleArray[section].count
         }
     }
     
+    // cellの表示内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "YumelistCell", for: indexPath) as? YumelistCell else { return UITableViewCell()}
+        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
         let segmentIndex = segment.selectedSegmentIndex
         switch segmentIndex {
         case 0:
-            cell.titleLabel.text = allYumeList[indexPath.row].title
-            if allYumeList[indexPath.row].imageData != nil {
-                cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
+            let sortedItems = allYumeList.sorted{
+                $0.createDate < $1.createDate
             }
-            cell.limitLabel.text = allYumeList[indexPath.row].limitDay.toString()
+            cell.titleLabel.text = sortedItems[indexPath.row].title
+            if sortedItems[indexPath.row].imageData != nil {
+                cell.yumeImageView.image = UIImage(data: sortedItems[indexPath.row].imageData!)
+            }
+            let dateComponents = calendar.dateComponents([.day], from: calendar.startOfDay(for: Date()), to: calendar.startOfDay(for: sortedItems[indexPath.row].limitDay))
+            guard let limitDay = dateComponents.day else {return UITableViewCell()}
+            cell.limitDayLabel.text = "期限は\(limitDay)日後"
         case 1:
-            _ = allYumeList.sorted(by: {
-                $0.category < $1.category
-            })
-            cell.titleLabel.text = allYumeList[indexPath.row].title
-            if allYumeList[indexPath.row].imageData != nil {
-                cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
+            let item = doubleArray[indexPath.section][indexPath.row]
+            cell.titleLabel.text = item.title
+            if item.imageData != nil {
+                cell.yumeImageView.image = UIImage(data: item.imageData!)
             }
-            cell.limitLabel.text = allYumeList[indexPath.row].limitDay.toString()
+            let dateComponents = calendar.dateComponents([.day], from: calendar.startOfDay(for: Date()), to: calendar.startOfDay(for: item.limitDay))
+            guard let limitDay = dateComponents.day else {return UITableViewCell()}
+            cell.limitDayLabel.text = "期限は\(limitDay)日後"
         default:
-            _ = allYumeList.sorted(by: {
-                $0.limitDay.compare($1.limitDay) == .orderedAscending
-            })
-            cell.titleLabel.text = allYumeList[indexPath.row].title
-            if allYumeList[indexPath.row].imageData != nil {
-                cell.yumeImageView.image = UIImage(data: allYumeList[indexPath.row].imageData!)
+            let sortedItems = allYumeList.sorted{
+                $0.limitDay < $1.limitDay
             }
-            cell.limitLabel.text = allYumeList[indexPath.row].limitDay.toString()
+            cell.titleLabel.text = sortedItems[indexPath.row].title
+            if sortedItems[indexPath.row].imageData != nil {
+                cell.yumeImageView.image = UIImage(data: sortedItems[indexPath.row].imageData!)
+            }
+            let dateComponents = calendar.dateComponents([.day], from: calendar.startOfDay(for: Date()), to: calendar.startOfDay(for: sortedItems[indexPath.row].limitDay))
+            guard let limitDay = dateComponents.day else {return UITableViewCell()}
+            cell.limitDayLabel.text = "期限は\(limitDay)日後"
         }
-        
         return cell
     }
-    
+    // cellの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if allYumeList.count > 0,  segment.selectedSegmentIndex == 1{
-            return allYumeList[section].category
+            return getCategory(forSection: section)
         }
         return ""
     }
@@ -127,8 +140,14 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         if segment.selectedSegmentIndex != 1 {
             return 1
         } else {
-            return Array(Set(allYumeList)).count
+            return doubleArray.count
         }
+    }
+    
+    // セクション番号からカテゴリを取得する
+    private func getCategory(forSection section: Int) -> String {
+        let category = doubleArray[section].first?.category ?? ""
+        return category
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
