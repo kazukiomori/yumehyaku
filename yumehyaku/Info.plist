@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>このアプリで目標設定のためにフォトライブラリの利用を許可しますか？</string>
+	<key>NSCameraUsageDescription</key>
+	<string>このアプリで目標設定のためにカメラのアクセスを許可しますか？</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

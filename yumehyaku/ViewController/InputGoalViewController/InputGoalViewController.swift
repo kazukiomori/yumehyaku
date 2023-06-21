@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YPImagePicker
 
 class InputGoalViewController: UIViewController {
     
@@ -49,6 +50,38 @@ class InputGoalViewController: UIViewController {
         datePicker.timeZone = TimeZone(identifier: "Asia/Tokyo")!
         limitLabel.text = Date().toString()
         datePicker.minimumDate = Date()
+        if imageView.image == nil {
+            let defaultImage = UIImage(systemName: "photo")
+            imageView.image = defaultImage
+        }
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedImage(_:))))
+    }
+    
+    @objc func tappedImage(_ sender: UITapGestureRecognizer) {
+        var config = YPImagePickerConfiguration()
+        config.library.mediaType = .photo
+        config.shouldSaveNewPicturesToAlbum = false
+        config.startOnScreen = .library
+        config.screens = [.library, .photo]
+        config.hidesStatusBar = false
+        config.hidesBottomBar = false
+        config.library.maxNumberOfItems = 1
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.modalPresentationStyle = .fullScreen
+        
+        self.present(picker, animated: true, completion: nil)
+        
+        didFinishPickingMedia(picker)
+    }
+    
+    func didFinishPickingMedia (_ picker: YPImagePicker) {
+        picker.didFinishPicking { items, _ in
+            picker.dismiss(animated: true, completion: nil)
+            guard let selectedImage = items.singlePhoto?.image else {return}
+            self.imageView.image = selectedImage
+        }
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -119,4 +152,11 @@ class InputGoalViewController: UIViewController {
         self.navigationController?.popViewController(animated: false)
     }
     
+}
+
+extension InputGoalViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.editedImage] as? UIImageView else {return}
+        self.imageView = selectedImage
+    }
 }
