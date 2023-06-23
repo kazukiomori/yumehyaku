@@ -28,6 +28,7 @@ class InputGoalViewController: UIViewController {
     var saveBarButtonItem: UIBarButtonItem!
     var calendar = Calendar.current
     var targetDay = Date()
+    var isEditPage: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,6 +16,11 @@ class Yume: Object {
     @objc dynamic var priolity: String = ""
     @objc dynamic var memo: String = ""
     @objc dynamic var createDate: Date = Date()
+    @objc dynamic var id : String = NSUUID().uuidString
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 extension Yume {
@@ -24,7 +29,7 @@ extension Yume {
     static func addData(yume: Yume) {
         let realm = try! Realm()
         try! realm.write{
-            realm.add(yume)
+            realm.add(yume, update: .modified)
         }
     }
     // realmからデータを取得
@@ -44,6 +49,8 @@ extension Yume {
     }
     
     static func deleteAll() {
+        let config = Realm.Configuration(schemaVersion: 1)
+        Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
         let result = realm.objects(Yume.self)
         try! realm.write {
