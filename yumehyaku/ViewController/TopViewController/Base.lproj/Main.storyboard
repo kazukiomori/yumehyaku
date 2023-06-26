@@ -101,10 +101,10 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <connections>
-                                            <outlet property="imageView" destination="V14-NP-3NA" id="O8f-Vl-NWh"/>
                                             <outlet property="limitDayLabel" destination="T06-2Y-ga4" id="WWT-bR-HOD"/>
                                             <outlet property="limitLabel" destination="vfp-3O-J1j" id="toj-db-ZWF"/>
                                             <outlet property="titleLabel" destination="ga9-Sv-MGX" id="AdY-KR-Jkh"/>
+                                            <outlet property="yumeImageView" destination="V14-NP-3NA" id="zbt-2h-nbT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

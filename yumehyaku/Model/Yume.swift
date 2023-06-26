@@ -34,6 +34,8 @@ extension Yume {
     }
     // realmからデータを取得
     static func getAllYumeData() -> Results<Yume> {
+        let config = Realm.Configuration(schemaVersion: 1)
+        Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
         var results: Results<Yume>
         results = realm.objects(Yume.self)

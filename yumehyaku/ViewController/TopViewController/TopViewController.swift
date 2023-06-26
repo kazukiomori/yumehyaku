@@ -95,8 +95,8 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 $0.createDate < $1.createDate
             }
             cell.titleLabel.text = sortedItems[indexPath.row].title
-            if sortedItems[indexPath.row].imageData != nil {
-                cell.yumeImageView.image = UIImage(data: sortedItems[indexPath.row].imageData!)
+            if let image = sortedItems[indexPath.row].imageData {
+                cell.yumeImageView.image = UIImage(data: image)
             }
             let dateComponents = calendar.dateComponents([.day], from: calendar.startOfDay(for: Date()), to: calendar.startOfDay(for: sortedItems[indexPath.row].limitDay))
             guard let limitDay = dateComponents.day else {return UITableViewCell()}
@@ -115,14 +115,55 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 $0.limitDay < $1.limitDay
             }
             cell.titleLabel.text = sortedItems[indexPath.row].title
-            if sortedItems[indexPath.row].imageData != nil {
-                cell.yumeImageView.image = UIImage(data: sortedItems[indexPath.row].imageData!)
+            if let image = sortedItems[indexPath.row].imageData {
+                cell.yumeImageView.image = UIImage(data: image)
             }
             let dateComponents = calendar.dateComponents([.day], from: calendar.startOfDay(for: Date()), to: calendar.startOfDay(for: sortedItems[indexPath.row].limitDay))
             guard let limitDay = dateComponents.day else {return UITableViewCell()}
             cell.limitDayLabel.text = "期限は\(limitDay)日後"
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        let storyBoard = UIStoryboard(name: "InputGoalViewController", bundle: nil)
+        guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "InputGoalViewController") as? InputGoalViewController else { return }
+        let segmentIndex = segment.selectedSegmentIndex
+        switch segmentIndex {
+        case 0:
+            let sortedItems = allYumeList.sorted{
+                $0.createDate < $1.createDate
+            }
+            nextViewController.titleTextField.text = sortedItems[indexPath.row].title
+            if sortedItems[indexPath.row].imageData != nil {
+                nextViewController.imageView.image = UIImage(data: sortedItems[indexPath.row].imageData!)
+            }
+            nextViewController.categoryButton.setTitle(sortedItems[indexPath.row].category, for: .normal)
+            nextViewController.priorityButton.setTitle(sortedItems[indexPath.row].priolity, for: .normal)
+            nextViewController.memoTextView.text = sortedItems[indexPath.row].memo
+        case 1:
+            let item = doubleArray[indexPath.section][indexPath.row]
+            nextViewController.titleTextField.text = item.title
+            if item.imageData != nil {
+                nextViewController.imageView.image = UIImage(data: item.imageData!)
+            }
+            nextViewController.categoryButton.setTitle(item.category, for: .normal)
+            nextViewController.priorityButton.setTitle(item.priolity, for: .normal)
+            nextViewController.memoTextView.text = item.memo
+        default:
+            let sortedItems = allYumeList.sorted{
+                $0.limitDay < $1.limitDay
+            }
+            nextViewController.titleTextField.text = sortedItems[indexPath.row].title
+            if sortedItems[indexPath.row].imageData != nil {
+                nextViewController.imageView.image = UIImage(data: sortedItems[indexPath.row].imageData!)
+            }
+            nextViewController.categoryButton.setTitle(sortedItems[indexPath.row].category, for: .normal)
+            nextViewController.priorityButton.setTitle(sortedItems[indexPath.row].priolity, for: .normal)
+            nextViewController.memoTextView.text = sortedItems[indexPath.row].memo
+        }
+        self.navigationController?.show(nextViewController, sender: nil)
     }
     // cellの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
